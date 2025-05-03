@@ -1,0 +1,1 @@
+Code for the blog post [Pareto frontier LLMs, Kagi edition](https://samek.fyi/pareto-frontier-models-kagi-edition/).
