@@ -28,22 +28,29 @@ for idx, row in df_sorted.iterrows():
 # Create the plot
 plt.figure(figsize=(12, 8))
 
-# Plot all models
+# Plot all models with CoT-based coloring
 for idx, row in df.iterrows():
+    color = 'red' if row['CoT'] == 'Y' else 'blue'
+    marker = 's' if row['model'] in pareto_models else 'o'  # Square for frontier, circle for others
+    size = 120 if row['model'] in pareto_models else 60
+    edgecolor = 'black' if row['model'] in pareto_models else 'none'
+    linewidth = 2 if row['model'] in pareto_models else 0
+    
+    plt.scatter(row['cost'], row['accuracy'], color=color, marker=marker, s=size, 
+                zorder=5 if row['model'] in pareto_models else 3,
+                edgecolor=edgecolor, linewidth=linewidth, alpha=0.8)
+    
+    # Add labels with appropriate formatting based on frontier status
     if row['model'] in pareto_models:
-        plt.scatter(row['cost'], row['accuracy'], color='red', s=100, zorder=5)
-        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=8, ha='center', rotation=45)
+        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=8, 
+                ha='center', rotation=45, fontweight='bold')
     else:
-        plt.scatter(row['cost'], row['accuracy'], color='blue', alpha=0.6, s=60, zorder=3)
+        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=6, 
+                ha='center', alpha=0.7, rotation=45)
 
 # Connect Pareto frontier points
 pareto_df = df[df['model'].isin(pareto_models)].sort_values('cost')
-plt.plot(pareto_df['cost'], pareto_df['accuracy'], 'r-', linewidth=2, alpha=0.5, zorder=4)
-
-# Add legend for non-frontier models
-for idx, row in df.iterrows():
-    if row['model'] not in pareto_models:
-        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=6, ha='center', alpha=0.7, rotation=45)
+plt.plot(pareto_df['cost'], pareto_df['accuracy'], 'k-', linewidth=2, alpha=0.5, zorder=4)
 
 plt.xscale('log')
 plt.xlabel('Cost ($)', fontsize=12)
@@ -53,8 +60,12 @@ plt.grid(True, alpha=0.3)
 
 # Add legend
 from matplotlib.lines import Line2D
-legend_elements = [Line2D([0], [0], marker='o', color='w', markerfacecolor='red', markersize=10, label='Pareto Frontier'),
-                   Line2D([0], [0], marker='o', color='w', markerfacecolor='blue', alpha=0.6, markersize=8, label='Other Models')]
+legend_elements = [
+    Line2D([0], [0], marker='o', color='w', markerfacecolor='red', markersize=10, label='CoT Models'),
+    Line2D([0], [0], marker='o', color='w', markerfacecolor='blue', markersize=10, label='Non-CoT Models'),
+    Line2D([0], [0], marker='s', color='w', markerfacecolor='gray', markeredgecolor='black', markersize=10, label='Pareto Frontier', linewidth=1),
+    Line2D([0], [0], marker='o', color='w', markerfacecolor='gray', markersize=8, label='Other Models')
+]
 plt.legend(handles=legend_elements, loc='lower right')
 
 plt.tight_layout()
