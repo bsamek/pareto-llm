@@ -21,13 +21,12 @@ data = {
         'chatgpt-4o-latest (2025-03-29)',
         'Grok 3 Mini Beta (low)',
         'gpt-4.1-mini',
-        'gpt-4.1-nano',
     ],
     'accuracy': [
-        82.7, 79.6, 76.9, 72.0, 64.9, 64.0, 60.4, 56.9, 55.1, 53.3, 52.4, 49.3, 47.1, 45.3, 34.7, 32.4, 8.9
+        82.7, 79.6, 76.9, 72.0, 64.9, 64.0, 60.4, 56.9, 55.1, 53.3, 52.4, 49.3, 47.1, 45.3, 34.7, 32.4
     ],
     'cost': [
-        69.29, 111.03, 37.41, 19.64, 36.83, 13.29, 17.72, 5.42, 1.12, 11.03, 9.86, 0.73, 1.85, 19.74, 0.79, 1.99, 0.43
+        69.29, 111.03, 37.41, 19.64, 36.83, 13.29, 17.72, 5.42, 1.12, 11.03, 9.86, 0.73, 1.85, 19.74, 0.79, 1.99
     ],
 
 }
@@ -57,17 +56,17 @@ for idx, row in df.iterrows():
     size = 120 if row['model'] in pareto_models else 60
     edgecolor = 'black' if row['model'] in pareto_models else 'none'
     linewidth = 2 if row['model'] in pareto_models else 0
-    
-    plt.scatter(row['cost'], row['accuracy'], color=color, marker=marker, s=size, 
+
+    plt.scatter(row['cost'], row['accuracy'], color=color, marker=marker, s=size,
                 zorder=5 if row['model'] in pareto_models else 3,
                 edgecolor=edgecolor, linewidth=linewidth, alpha=0.8)
-    
+
     # Add labels with appropriate formatting based on frontier status
     if row['model'] in pareto_models:
-        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=8, 
+        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=8,
                 ha='center', rotation=45, fontweight='bold')
     else:
-        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=6, 
+        plt.text(row['cost'], row['accuracy'] + 0.5, row['model'], fontsize=6,
                 ha='center', alpha=0.7, rotation=45)
 
 # Connect Pareto frontier points
