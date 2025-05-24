@@ -35,8 +35,3 @@ Creates a Pareto frontier visualization using data from Aider's LLM benchmark. T
 
 - [Pareto frontier LLMs, Aider edition](https://samek.fyi/pareto-frontier-llms-aider-edition/)
 - [Pareto frontier LLMs, Kagi edition](https://samek.fyi/pareto-frontier-models-kagi-edition/)
-
-## Usage
-
-Run either script to generate the corresponding visualization:
-
