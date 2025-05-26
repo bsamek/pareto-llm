@@ -1,0 +1,5 @@
+# Cursor Rules for this project
+
+## Package Installation
+- Always use `uv pip install` for installing Python packages
+- Do not use `pip` or `pip3` directly
