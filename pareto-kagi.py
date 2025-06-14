@@ -6,41 +6,33 @@ import pandas as pd
 data = {
     "model": [
         "o3",
-        "claude-3-7-extended-thinking",
+        "claude-4-opus",
         "gemini-2-5-pro",
-        "qwen-qwq-32b",
-        "o1",
-        "o3-mini",
-        "deepseek-r1",
+        "qwen-3-235b-a22b-rope",
+        "claude-4-sonnet",
         "o4-mini",
-        "grok-3-mini",
-        "deepseek-r1-distill-llama-70b",
-        "gpt-4-1",
+        "deepseek-r1",
+        "claude-4-opus-no-think",
         "chatgpt-4o",
-        "deepseek",
-        "grok-3",
+        "gpt-4-1",
+        "deepseekr1-distil-llama",
+        "claude-4-sonnet-no-think",
+        "deepseek-chat-v3",
+        "qwen-3-32b",
         "llama-4-maverick",
-        "o1-pro",
         "gpt-4-1-mini",
-        "claude-3-7-sonnet",
-        "claude-3-opus",
-        "claude-3-sonnet-v2",
+        "grok-3",
+        "mistral-medium",
+        "qwen-3-235b-a22b-no-think",
+        "gpt-4o",
+        "gemini-2-5-flash-no-think",
         "mistral-large",
-        "claude-3-sonnet-v1",
         "mistral-small",
-        "llama-3-405b",
-        "llama-3-70b",
         "gemini-flash",
-        "llama-4-scout",
-        "gpt-4-turbo",
+        "qwen-3-32b-no-think",
         "gpt-4o-mini",
+        "llama-4-scout",
         "claude-3-haiku",
-        "nova-pro",
-        "gemini-pro-1-5",
-        "gpt-4-1-nano",
-        "nova-lite",
-        "llama-3-3b",
-        "mistral-nemo",
     ],
     "CoT": [
         "Y",
@@ -50,21 +42,13 @@ data = {
         "Y",
         "Y",
         "Y",
-        "Y",
-        "N",
-        "Y",
-        "N",
-        "N",
         "N",
         "N",
         "N",
         "Y",
         "N",
+        "N",
         "Y",
-        "N",
-        "N",
-        "N",
-        "N",
         "N",
         "N",
         "N",
@@ -81,84 +65,71 @@ data = {
         "N",
     ],
     "accuracy": [
-        76.29,
-        71.34,
-        68.72,
-        65.94,
-        65.44,
-        65.16,
-        64.06,
-        62.27,
-        59.17,
-        54.41,
-        54.17,
-        53.09,
-        50.34,
-        50.34,
-        46.09,
-        44.38,
-        44.06,
-        42.94,
-        41.57,
-        41.22,
-        39.42,
-        37.12,
-        36.47,
-        35.85,
-        34.78,
-        34.4,
-        33.43,
-        32.51,
-        30.98,
-        29.63,
-        29.12,
-        28.99,
-        27.83,
-        26.09,
-        17.58,
-        14.37,
+        78.03,
+        77.46,
+        74.03,
+        72.12,
+        68.69,
+        67.79,
+        64.00,
+        60.21,
+        54.80,
+        53.76,
+        52.62,
+        52.58,
+        51.95,
+        49.83,
+        48.93,
+        48.80,
+        48.40,
+        47.20,
+        43.00,
+        42.60,
+        41.88,
+        40.53,
+        37.99,
+        34.10,
+        33.93,
+        33.38,
+        30.80,
+        26.44,
     ],
     "cost": [
-        2.57191,
-        2.20567,
-        0.257,
-        0.11994,
-        6.55213,
-        0.52675,
-        1.16229,
-        0.41746,
-        0.07626,
-        0.40643,
-        0.2275,
-        0.72127,
-        0.32012,
-        0.92201,
-        0.04311,
-        59.5752,
-        0.05571,
-        0.30431,
-        1.94389,
-        0.26061,
-        0.12415,
-        0.33792,
-        0.00382,
-        0.33991,
-        0.10628,
-        0.0128,
-        0.02634,
-        1.37861,
-        0.02758,
-        0.12328,
-        0.15737,
-        0.50243,
-        0.01078,
-        0.01007,
-        0.01212,
-        0.00128,
+        2.08,
+        2.84,
+        0.19,
+        0.08,
+        0.62,
+        0.32,
+        0.97,
+        1.06,
+        0.57,
+        0.18,
+        0.33,
+        0.23,
+        0.24,
+        0.03,
+        0.03,
+        0.05,
+        0.70,
+        0.05,
+        0.02,
+        0.22,
+        0.02,
+        0.10,
+        0.00,
+        0.01,
+        0.02,
+        0.02,
+        0.02,
+        0.09,
     ],
 }
 
 df = pd.DataFrame(data)
+
+# Filter out zero-cost models (data errors)
+df = df[df["cost"] > 0]
 
 # Identify Pareto frontier
 pareto_models = []
@@ -172,6 +143,7 @@ for idx, row in df_sorted.iterrows():
             break
     if not dominated:
         pareto_models.append(row["model"])
+
 
 # Create the plot
 plt.figure(figsize=(12, 8))
@@ -200,9 +172,20 @@ for idx, row in df.iterrows():
 
     # Add labels with appropriate formatting based on frontier status
     if row["model"] in pareto_models:
+        # Offset frontier model labels to avoid overlaps
+        if row["model"] == "qwen-3-235b-a22b-no-think":
+            label_offset = 3.0
+        elif row["model"] == "gemini-2-5-flash-no-think":
+            label_offset = 3.0
+        elif row["model"] == "llama-4-maverick":
+            label_offset = 2.0
+        elif row["model"] == "qwen-3-32b":
+            label_offset = 1.0
+        else:
+            label_offset = 0.5
         plt.text(
             row["cost"],
-            row["accuracy"] + 0.5,
+            row["accuracy"] + label_offset,
             row["model"],
             fontsize=8,
             ha="center",
@@ -220,11 +203,12 @@ for idx, row in df.iterrows():
             rotation=45,
         )
 
-# Connect Pareto frontier points
+# Connect Pareto frontier points in proper order
 pareto_df = df[df["model"].isin(pareto_models)].sort_values("cost")
-plt.plot(
-    pareto_df["cost"], pareto_df["accuracy"], "k-", linewidth=2, alpha=0.5, zorder=4
-)
+if len(pareto_df) > 1:
+    plt.plot(
+        pareto_df["cost"], pareto_df["accuracy"], "k-", linewidth=2, alpha=0.5, zorder=4
+    )
 
 plt.xscale("log")
 plt.xlabel("Cost ($)", fontsize=12)
