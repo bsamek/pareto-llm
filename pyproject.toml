@@ -1,0 +1,10 @@
+[project]
+name = "pareto-llm"
+version = "0.1.0"
+description = "LLM Pareto frontier analysis"
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "pandas",
+]
+requires-python = ">=3.8"
