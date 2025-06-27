@@ -1,6 +1,5 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
+import plotly.graph_objects as go
 
 # Create the dataset
 data = {
@@ -153,90 +152,50 @@ for idx, row in df_sorted.iterrows():
         pareto_models.append(row["model"])
 
 # Create the plot
-plt.figure(figsize=(12, 8))
+fig = go.Figure()
 
-# Plot all models with consistent coloring
-for idx, row in df.iterrows():
-    color = "blue"  # Use blue for all models
-    marker = (
-        "s" if row["model"] in pareto_models else "o"
-    )  # Square for frontier, circle for others
-    size = 120 if row["model"] in pareto_models else 60
-    edgecolor = "black" if row["model"] in pareto_models else "none"
-    linewidth = 2 if row["model"] in pareto_models else 0
-
-    plt.scatter(
-        row["cost"],
-        row["accuracy"],
-        color=color,
-        marker=marker,
-        s=size,
-        zorder=5 if row["model"] in pareto_models else 3,
-        edgecolor=edgecolor,
-        linewidth=linewidth,
-        alpha=0.8,
+# Add all models
+fig.add_trace(
+    go.Scatter(
+        x=df["cost"],
+        y=df["accuracy"],
+        mode="markers",
+        marker=dict(
+            color="blue",
+            size=8,
+            symbol=["square" if m in pareto_models else "circle" for m in df["model"]],
+            line=dict(
+                color="black",
+                width=[2 if m in pareto_models else 0 for m in df["model"]],
+            ),
+        ),
+        hovertext=df["model"],
+        hoverinfo="text",
+        name="Models",
     )
-
-    # Add labels with appropriate formatting based on frontier status
-    if row["model"] in pareto_models:
-        plt.text(
-            row["cost"],
-            row["accuracy"] + 0.5,
-            row["model"],
-            fontsize=8,
-            ha="center",
-            rotation=45,
-            fontweight="bold",
-        )
-    else:
-        plt.text(
-            row["cost"],
-            row["accuracy"] + 0.5,
-            row["model"],
-            fontsize=6,
-            ha="center",
-            alpha=0.7,
-            rotation=45,
-        )
+)
 
 # Connect Pareto frontier points
 pareto_df = df[df["model"].isin(pareto_models)].sort_values("cost")
-plt.plot(
-    pareto_df["cost"], pareto_df["accuracy"], "k-", linewidth=2, alpha=0.5, zorder=4
+fig.add_trace(
+    go.Scatter(
+        x=pareto_df["cost"],
+        y=pareto_df["accuracy"],
+        mode="lines",
+        line=dict(color="black", width=2, dash="dash"),
+        name="Pareto Frontier",
+    )
 )
 
-plt.xscale("log")
-plt.xlabel("Cost ($)", fontsize=12)
-plt.ylabel("Accuracy (%)", fontsize=12)
-plt.title("LLM Pareto Frontier: Cost vs Accuracy", fontsize=16, fontweight="bold")
-plt.grid(True, alpha=0.3)
-
-# Add legend
-from matplotlib.lines import Line2D
-
-legend_elements = [
-    Line2D(
-        [0],
-        [0],
-        marker="s",
-        color="w",
-        markerfacecolor="blue",
-        markeredgecolor="black",
-        markersize=10,
-        label="Pareto Frontier",
-        linewidth=1,
+fig.update_layout(
+    title="LLM Pareto Frontier: Cost vs Accuracy",
+    xaxis_title="Cost ($)",
+    yaxis_title="Accuracy (%)",
+    xaxis_type="log",
+    showlegend=True,
+    legend=dict(
+        itemsizing="constant",
     ),
-    Line2D(
-        [0],
-        [0],
-        marker="o",
-        color="w",
-        markerfacecolor="blue",
-        markersize=8,
-        label="Other Models",
-    ),
-]
-plt.legend(handles=legend_elements, loc="lower right")
+)
 
-plt.tight_layout()
-plt.show()
+fig.show()

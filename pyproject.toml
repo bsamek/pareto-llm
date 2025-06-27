@@ -6,5 +6,6 @@ dependencies = [
     "matplotlib",
     "numpy",
     "pandas",
+    "plotly",
 ]
 requires-python = ">=3.8"
