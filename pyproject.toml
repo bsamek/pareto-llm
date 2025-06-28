@@ -3,6 +3,7 @@ name = "pareto-llm"
 version = "0.1.0"
 description = "LLM Pareto frontier analysis"
 dependencies = [
+    "kaleido>=1.0.0",
     "matplotlib",
     "numpy",
     "pandas",

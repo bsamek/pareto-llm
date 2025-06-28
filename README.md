@@ -19,6 +19,14 @@ Understanding the Pareto frontier helps you:
 
 ## Scripts
 
+### pareto-livebench.py
+Creates a Pareto frontier visualization using data from the LiveBench LLM benchmark. This script:
+- Shows the trade-off between cost and overall LiveBench performance
+- Highlights Pareto-optimal models with square markers
+- Uses a logarithmic cost scale to handle the wide range of model costs
+
+![LiveBench Pareto Frontier](pareto-livebench.png)
+
 ### pareto-kagi.py
 Creates a Pareto frontier visualization using data from the Kagi LLM benchmark. This script:
 - Color-codes models by whether they use Chain-of-Thought (CoT) reasoning
@@ -30,6 +38,8 @@ Creates a Pareto frontier visualization using data from Aider's LLM benchmark. T
 - Focuses on coding-specific performance metrics
 - Uses consistent blue coloring for all models
 - Emphasizes the frontier models with distinctive markers
+
+![Aider Pareto Frontier](pareto-aider.png)
 
 ## Related Blog Posts
 
