@@ -37,7 +37,7 @@ def get_model_cost(model_name, pricing_data):
         "Claude 4 Sonnet": pricing_data.get("Claude 4 Sonnet", 9.0),
         "Gemini 2.5 Pro": pricing_data.get("Gemini 2.5 Pro", 6.25),
         "Gemini 2.5 Flash": pricing_data.get("Gemini 2.5 Flash", 1.40),
-        "Gemini 2.5 Flash Lite": pricing_data.get("Gemini 2.5 Flash Lite", 0.70),
+        "Gemini 2.5 Flash Lite": pricing_data.get("Gemini 2.5 Flash Lite", 0.25),
         "GPT-4o": pricing_data.get("GPT-4o", 6.25),
     }
 

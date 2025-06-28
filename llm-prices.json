@@ -26,8 +26,8 @@
         },
         {
           "name": "Gemini 2.5 Flash Lite",
-          "input_price": 0.15,
-          "output_price": 1.25
+          "input_price": 0.10,
+          "output_price": 0.40
         },
         {
           "name": "Gemini 1.5 Pro",
