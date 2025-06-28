@@ -27,6 +27,15 @@ Creates a Pareto frontier visualization using data from the Kagi LLM benchmark.
 
 ![Kagi Pareto Frontier](pareto-kagi.png)
 
+### LM Arena
+
+[LM Arena](https://lmarena.ai/) is a crowdsourced platform for evaluating LLMs through head-to-head comparisons, producing Elo ratings.
+
+#### pareto-lmarena.py
+Creates a Pareto frontier visualization using Elo scores from the LM Arena leaderboard.
+
+![LM Arena Pareto Frontier](pareto-lmarena.png)
+
 ### LiveBench
 
 [LiveBench](https://livebench.ai/) is a benchmark for LLMs designed with test set contamination and objective evaluation in mind.
