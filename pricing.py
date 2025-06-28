@@ -53,7 +53,11 @@ def get_model_cost(model_name, pricing_data):
     elif "o4-Mini High" in model_name:
         base_cost = model_mapping["o4-mini"]
         multiplier = 2  # High multiplier
-    elif "o4-Mini Medium" in model_name or "o4-Mini" in model_name:
+    elif (
+        "o4-Mini Medium" in model_name
+        or "o4-Mini" in model_name
+        or "o4-mini" in model_name
+    ):
         base_cost = model_mapping["o4-mini"]
     elif "Claude 4 Opus Thinking" in model_name:
         base_cost = model_mapping["Claude 4 Opus"]
