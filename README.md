@@ -36,30 +36,6 @@ Creates a Pareto frontier visualization using data from the LiveBench LLM benchm
 
 ![LiveBench Pareto Frontier](pareto-livebench.png)
 
-#### pareto-livebench-coding.py
-Creates a Pareto frontier visualization using LiveBench coding-specific performance data.
-
-![LiveBench Coding Pareto Frontier](pareto-livebench-coding.png)
-
-#### pareto-livebench-data-analysis.py
-Creates a Pareto frontier visualization using LiveBench data analysis performance data.
-
-![LiveBench Data Analysis Pareto Frontier](pareto-livebench-data-analysis.png)
-
-#### pareto-livebench-if.py
-Creates a Pareto frontier visualization using LiveBench instruction following performance data.
-
-![LiveBench Instruction Following Pareto Frontier](pareto-livebench-if.png)
-
-#### pareto-livebench-language.py
-Creates a Pareto frontier visualization using LiveBench language task performance data.
-
-![LiveBench Language Pareto Frontier](pareto-livebench-language.png)
-
-#### pareto-livebench-reasoning.py
-Creates a Pareto frontier visualization using LiveBench reasoning performance data.
-
-![LiveBench Reasoning Pareto Frontier](pareto-livebench-reasoning.png)
 
 ## Related Blog Posts
 
