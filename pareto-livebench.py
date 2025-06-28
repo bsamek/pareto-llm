@@ -34,7 +34,6 @@ models = [
     "GPT-4.1",
     "ChatGPT-4o",
     "GPT-4.1 Mini",
-    "GPT-4o",
     "GPT-4.1 Nano",
 ]
 
@@ -53,7 +52,6 @@ accuracy_scores = [
     55.90,
     54.74,
     51.57,
-    47.43,
     40.51,
 ]
 

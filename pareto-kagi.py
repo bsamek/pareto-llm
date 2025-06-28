@@ -14,7 +14,6 @@ data = {
         "gpt-4-1",
         "claude-4-sonnet [no-think]",
         "gpt-4-1-mini",
-        "gpt-4o",
         "gemini-2-5-flash [no-think]",
     ],
     "accuracy": [
@@ -28,7 +27,6 @@ data = {
         53.76,
         52.58,
         48.80,
-        42.60,
         41.88,
     ],
     "cost": [
@@ -42,7 +40,6 @@ data = {
         0.18,
         0.23,
         0.05,
-        0.22,
         0.02,
     ],
 }
