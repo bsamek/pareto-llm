@@ -13,8 +13,7 @@ The scripts in this repository create scatter plots that help identify which LLM
 
 [Aider](https://aider.chat/docs/leaderboards/)
 
-#### pareto-aider.py  
-Creates a Pareto frontier visualization using data from Aider's LLM benchmark.
+#### pareto-aider.py
 
 ![Aider Pareto Frontier](pareto-aider.png)
 
@@ -23,7 +22,6 @@ Creates a Pareto frontier visualization using data from Aider's LLM benchmark.
 [Kagi](https://help.kagi.com/kagi/ai/llm-benchmark.html)
 
 #### pareto-kagi.py
-Creates a Pareto frontier visualization using data from the Kagi LLM benchmark.
 
 ![Kagi Pareto Frontier](pareto-kagi.png)
 
@@ -32,7 +30,6 @@ Creates a Pareto frontier visualization using data from the Kagi LLM benchmark.
 [LM Arena](https://lmarena.ai/)
 
 #### pareto-lmarena.py
-Creates a Pareto frontier visualization using Elo scores from the LM Arena leaderboard.
 
 ![LM Arena Pareto Frontier](pareto-lmarena.png)
 
@@ -41,7 +38,6 @@ Creates a Pareto frontier visualization using Elo scores from the LM Arena leade
 [LiveBench](https://livebench.ai/)
 
 #### pareto-livebench.py
-Creates a Pareto frontier visualization using data from the LiveBench LLM benchmark.
 
 ![LiveBench Pareto Frontier](pareto-livebench.png)
 
