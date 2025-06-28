@@ -1,1 +1,0 @@
-When asked to run a python script, use `uv run python <script_name>.py`.
