@@ -59,12 +59,6 @@ model_data = [
         True,
     ),  # Reasoning IS thinking
     (
-        "Gemini 2.5 Flash (April '25) (Reasoning)",
-        "Gemini 2.5 Flash",
-        60,
-        True,
-    ),  # Reasoning IS thinking
-    (
         "Gemini 2.5 Flash-Lite (Reasoning)",
         "Gemini 2.5 Flash-Lite Preview",
         55,
