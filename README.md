@@ -9,6 +9,24 @@ The scripts in this repository create scatter plots that help identify which LLM
 
 ## Scripts
 
+### Aider
+
+[Aider](https://aider.chat/docs/leaderboards/) provides coding-focused LLM benchmarks and leaderboards.
+
+#### pareto-aider.py  
+Creates a Pareto frontier visualization using data from Aider's LLM benchmark.
+
+![Aider Pareto Frontier](pareto-aider.png)
+
+### Kagi
+
+[Kagi](https://help.kagi.com/kagi/ai/llm-benchmark.html) provides LLM benchmarks focused on real-world performance evaluation.
+
+#### pareto-kagi.py
+Creates a Pareto frontier visualization using data from the Kagi LLM benchmark.
+
+![Kagi Pareto Frontier](pareto-kagi.png)
+
 ### LiveBench
 
 [LiveBench](https://livebench.ai/) is a benchmark for LLMs designed with test set contamination and objective evaluation in mind.
@@ -42,24 +60,6 @@ Creates a Pareto frontier visualization using LiveBench language task performanc
 Creates a Pareto frontier visualization using LiveBench reasoning performance data.
 
 ![LiveBench Reasoning Pareto Frontier](pareto-livebench-reasoning.png)
-
-### Kagi
-
-[Kagi](https://help.kagi.com/kagi/ai/llm-benchmark.html) provides LLM benchmarks focused on real-world performance evaluation.
-
-#### pareto-kagi.py
-Creates a Pareto frontier visualization using data from the Kagi LLM benchmark.
-
-![Kagi Pareto Frontier](pareto-kagi.png)
-
-### Aider
-
-[Aider](https://aider.chat/docs/leaderboards/) provides coding-focused LLM benchmarks and leaderboards.
-
-#### pareto-aider.py  
-Creates a Pareto frontier visualization using data from Aider's LLM benchmark.
-
-![Aider Pareto Frontier](pareto-aider.png)
 
 ## Related Blog Posts
 
