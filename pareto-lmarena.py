@@ -26,7 +26,7 @@ model_data = [
         False,
     ),  # ChatGPT is NOT thinking
     ("gpt-4.1-2025-04-14", "GPT-4.1", 1411, False),  # GPT models are NOT thinking
-    ("o4-mini-2025-04-16", "o4-mini", 1398, False),  # o4-mini is NOT thinking
+    ("o4-mini-2025-04-16", "o4-mini", 1398, True),  # o4-mini IS thinking
     (
         "gpt-4.1-mini-2025-04-14",
         "GPT-4.1 Mini",
