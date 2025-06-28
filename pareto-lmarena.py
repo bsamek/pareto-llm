@@ -95,7 +95,12 @@ df_sorted = df.sort_values("cost")
 for idx, row in df_sorted.iterrows():
     dominated = False
     for idx2, row2 in df_sorted.iterrows():
-        if row2["cost"] < row["cost"] and row2["elo_score"] >= row["elo_score"]:
+        # Check if another model dominates this one
+        # A model is dominated if another model has lower or equal cost AND higher or equal performance
+        # For equal cost, we need the higher performance model to dominate
+        if (row2["cost"] < row["cost"] and row2["elo_score"] >= row["elo_score"]) or (
+            row2["cost"] == row["cost"] and row2["elo_score"] > row["elo_score"]
+        ):
             dominated = True
             break
     if not dominated:
