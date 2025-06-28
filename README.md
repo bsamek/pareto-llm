@@ -33,6 +33,48 @@ Creates a Pareto frontier visualization using data from the Kagi LLM benchmark. 
 - Highlights Pareto-optimal models with squares and bold labels
 - Uses a logarithmic cost scale to handle the wide range of model costs
 
+![Kagi Pareto Frontier](pareto-kagi.png)
+
+### pareto-livebench-coding.py
+Creates a Pareto frontier visualization using LiveBench coding-specific performance data. This script:
+- Shows the trade-off between cost and coding task performance
+- Highlights Pareto-optimal models with square markers
+- Uses a logarithmic cost scale to handle the wide range of model costs
+
+![LiveBench Coding Pareto Frontier](pareto-livebench-coding.png)
+
+### pareto-livebench-data-analysis.py
+Creates a Pareto frontier visualization using LiveBench data analysis performance data. This script:
+- Shows the trade-off between cost and data analysis task performance
+- Highlights Pareto-optimal models with square markers
+- Uses a logarithmic cost scale to handle the wide range of model costs
+
+![LiveBench Data Analysis Pareto Frontier](pareto-livebench-data-analysis.png)
+
+### pareto-livebench-if.py
+Creates a Pareto frontier visualization using LiveBench instruction following performance data. This script:
+- Shows the trade-off between cost and instruction following performance
+- Highlights Pareto-optimal models with square markers
+- Uses a logarithmic cost scale to handle the wide range of model costs
+
+![LiveBench Instruction Following Pareto Frontier](pareto-livebench-if.png)
+
+### pareto-livebench-language.py
+Creates a Pareto frontier visualization using LiveBench language task performance data. This script:
+- Shows the trade-off between cost and language task performance
+- Highlights Pareto-optimal models with square markers
+- Uses a logarithmic cost scale to handle the wide range of model costs
+
+![LiveBench Language Pareto Frontier](pareto-livebench-language.png)
+
+### pareto-livebench-reasoning.py
+Creates a Pareto frontier visualization using LiveBench reasoning performance data. This script:
+- Shows the trade-off between cost and reasoning task performance
+- Highlights Pareto-optimal models with square markers
+- Uses a logarithmic cost scale to handle the wide range of model costs
+
+![LiveBench Reasoning Pareto Frontier](pareto-livebench-reasoning.png)
+
 ### pareto-aider.py  
 Creates a Pareto frontier visualization using data from Aider's LLM benchmark. This script:
 - Focuses on coding-specific performance metrics

@@ -74,7 +74,7 @@ fig.add_trace(
     go.Scatter(
         x=df["cost"],
         y=df["accuracy"],
-        mode="markers",
+        mode="markers+text",
         marker=dict(
             color="blue",  # Use blue for all models for consistency
             size=8,
@@ -84,6 +84,9 @@ fig.add_trace(
                 width=[2 if m in pareto_models else 0 for m in df["model"]],
             ),
         ),
+        text=df["model"],
+        textposition="top center",
+        textfont=dict(size=10),
         hovertext=df["model"],
         hoverinfo="text",
         name="Models",
@@ -114,3 +117,4 @@ fig.update_layout(
 )
 
 fig.show()
+fig.write_image("pareto-kagi.png", width=1200, height=800)
