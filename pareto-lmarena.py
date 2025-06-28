@@ -14,49 +14,71 @@ from pricing import load_pricing_data, get_model_cost
 # Load pricing data from JSON file
 pricing_data = load_pricing_data()
 
-# Model list and Elo scores - filtered to include only specified models
-# Mapping LM Arena model names to our pricing model names
+# Model list with explicit thinking/non-thinking tracking
+# Format: (arena_name, pricing_base_name, elo_score, is_thinking)
 model_data = [
     # OpenAI models
-    ("o3-2025-04-16", "o3", 1451),
-    ("chatgpt-4o-latest-20250326", "ChatGPT-4o", 1442),
-    ("gpt-4.1-2025-04-14", "GPT-4.1", 1411),
-    ("o4-mini-2025-04-16", "o4-mini", 1398),
-    ("gpt-4.1-mini-2025-04-14", "GPT-4.1 Mini", 1374),
-    ("gpt-4.1-nano-2025-04-14", "GPT-4.1 Nano", 1320),
-    # Anthropic models
-    ("claude-opus-4-20250514", "Claude 4 Opus", 1418),
-    ("claude-sonnet-4-20250514", "Claude 4 Sonnet", 1393),
-    # Google models
-    ("gemini-2.5-pro", "Gemini 2.5 Pro", 1467),
-    ("gemini-2.5-flash", "Gemini 2.5 Flash", 1418),
+    ("o3-2025-04-16", "o3", 1451, True),  # o3 IS thinking
+    (
+        "chatgpt-4o-latest-20250326",
+        "ChatGPT-4o",
+        1442,
+        False,
+    ),  # ChatGPT is NOT thinking
+    ("gpt-4.1-2025-04-14", "GPT-4.1", 1411, False),  # GPT models are NOT thinking
+    ("o4-mini-2025-04-16", "o4-mini", 1398, False),  # o4-mini is NOT thinking
+    (
+        "gpt-4.1-mini-2025-04-14",
+        "GPT-4.1 Mini",
+        1374,
+        False,
+    ),  # GPT models are NOT thinking
+    (
+        "gpt-4.1-nano-2025-04-14",
+        "GPT-4.1 Nano",
+        1320,
+        False,
+    ),  # GPT models are NOT thinking
+    # Anthropic models - NONE are thinking
+    ("claude-opus-4-20250514", "Claude 4 Opus", 1418, False),  # Claude is NOT thinking
+    (
+        "claude-sonnet-4-20250514",
+        "Claude 4 Sonnet",
+        1393,
+        False,
+    ),  # Claude is NOT thinking
+    # Google models - ALL Gemini 2.5 models ARE thinking
+    ("gemini-2.5-pro", "Gemini 2.5 Pro", 1467, True),  # Gemini 2.5 IS thinking
+    ("gemini-2.5-flash", "Gemini 2.5 Flash", 1418, True),  # Gemini 2.5 IS thinking
     (
         "gemini-2.5-flash-lite-preview-06-17-thinking",
-        "Gemini 2.5 Flash Lite Thinking",
+        "Gemini 2.5 Flash Lite",
         1387,
-    ),  # CoT model
+        True,
+    ),  # Gemini 2.5 IS thinking
 ]
 
 # Extract data for plotting
 arena_names = []
-pricing_names = []
+base_pricing_names = []
 elo_scores = []
+is_thinking_flags = []
 
-for arena_name, pricing_name, elo in model_data:
+for arena_name, pricing_base_name, elo, is_thinking in model_data:
     arena_names.append(arena_name)
-    pricing_names.append(pricing_name)
+    base_pricing_names.append(pricing_base_name)
     elo_scores.append(elo)
+    is_thinking_flags.append(is_thinking)
 
-# Calculate costs using the pricing module
+# Calculate costs using the pricing module with explicit thinking multiplier
 costs = []
-for pricing_name in pricing_names:
-    if "Thinking" in pricing_name:
-        # Apply 2x multiplier for CoT models
-        base_name = pricing_name.replace(" Thinking", "")
-        base_cost = get_model_cost(base_name, pricing_data)
+for base_name, is_thinking in zip(base_pricing_names, is_thinking_flags):
+    base_cost = get_model_cost(base_name, pricing_data)
+    if is_thinking:
+        # Apply 2x multiplier for thinking models
         costs.append(base_cost * 2)
     else:
-        costs.append(get_model_cost(pricing_name, pricing_data))
+        costs.append(base_cost)
 
 data = {
     "model": arena_names,
