@@ -8,7 +8,7 @@ The scripts in this repository create scatter plots that help identify which LLM
 
 ## Cost Calculation
 
-Pricing data is sourced from [llm-prices.com](https://www.llm-prices.com/) and represents the average of input and output token costs per million tokens.
+For leaderboards that don't provide cost data, pricing is sourced from [llm-prices.com](https://www.llm-prices.com/) and represents the average of input and output token costs per million tokens. Where leaderboards provide their own cost data, we use theirs.
 
 **Cost multipliers are applied as follows:**
 - **Thinking models**: 2x base cost
