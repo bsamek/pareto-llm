@@ -32,7 +32,7 @@ model_data = [
     ("gemini-2.5-flash", "Gemini 2.5 Flash", 1418),
     (
         "gemini-2.5-flash-lite-preview-06-17-thinking",
-        "Gemini 2.5 Flash Thinking",
+        "Gemini 2.5 Flash Lite Thinking",
         1387,
     ),  # CoT model
 ]
