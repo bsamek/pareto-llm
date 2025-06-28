@@ -2,6 +2,8 @@
 
 This repository contains code for analyzing and visualizing the Pareto frontier of Large Language Models (LLMs) based on their cost-accuracy trade-offs.
 
+**Note:** Analysis focuses on the latest models from major AI labs to provide current cost-performance comparisons.
+
 ## What is this?
 
 The scripts in this repository create scatter plots that help identify which LLMs offer the best value proposition by plotting accuracy against cost. The **Pareto frontier** represents the set of models that are not dominated by any other model - meaning no other model offers both lower cost AND higher accuracy.
