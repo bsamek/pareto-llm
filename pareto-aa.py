@@ -53,18 +53,6 @@ model_data = [
         False,
     ),  # Base Gemini 2.5 Pro is NOT thinking
     (
-        "Gemini 2.5 Pro (Mar '25)",
-        "Gemini 2.5 Pro",
-        69,
-        False,
-    ),  # Base variant is NOT thinking
-    (
-        "Gemini 2.5 Pro (May '25)",
-        "Gemini 2.5 Pro",
-        68,
-        False,
-    ),  # Base variant is NOT thinking
-    (
         "Gemini 2.5 Flash (Reasoning)",
         "Gemini 2.5 Flash",
         65,
