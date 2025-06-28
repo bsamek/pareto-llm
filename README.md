@@ -6,6 +6,14 @@ This repository contains code for analyzing and visualizing the Pareto frontier 
 
 The scripts in this repository create scatter plots that help identify which LLMs offer the best value proposition by plotting accuracy against cost. The **Pareto frontier** represents the set of models that are not dominated by any other model - meaning no other model offers both lower cost AND higher accuracy.
 
+## Cost Calculation
+
+Pricing data is sourced from [llm-prices.com](https://www.llm-prices.com/) and represents the average of input and output token costs per million tokens.
+
+**Cost multipliers are applied as follows:**
+- **Thinking models**: 2x base cost
+- **High thinking models**: 4x base cost (2x for thinking × 2x for high tier)
+
 
 ## Scripts
 
