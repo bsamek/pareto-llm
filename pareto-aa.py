@@ -50,8 +50,8 @@ model_data = [
         "Gemini 2.5 Pro",
         "Gemini 2.5 Pro",
         70,
-        False,
-    ),  # Base Gemini 2.5 Pro is NOT thinking
+        True,
+    ),  # Gemini 2.5 Pro IS thinking
     (
         "Gemini 2.5 Flash (Reasoning)",
         "Gemini 2.5 Flash",
