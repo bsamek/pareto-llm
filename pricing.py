@@ -37,6 +37,7 @@ def get_model_cost(model_name, pricing_data):
         "Claude 4 Sonnet": pricing_data.get("Claude 4 Sonnet", 9.0),
         "Gemini 2.5 Pro": pricing_data.get("Gemini 2.5 Pro", 6.25),
         "Gemini 2.5 Flash": pricing_data.get("Gemini 2.5 Flash", 1.40),
+        "Gemini 2.5 Flash Lite": pricing_data.get("Gemini 2.5 Flash Lite", 0.70),
         "GPT-4o": pricing_data.get("GPT-4o", 6.25),
     }
 
@@ -76,6 +77,10 @@ def get_model_cost(model_name, pricing_data):
         multiplier = 2  # CoT multiplier
     elif "Gemini 2.5 Pro Preview" in model_name or "Gemini 2.5 Pro" in model_name:
         base_cost = model_mapping["Gemini 2.5 Pro"]
+    elif "Gemini 2.5 Flash Lite" in model_name:
+        base_cost = model_mapping["Gemini 2.5 Flash Lite"]
+        if "Thinking" in model_name:
+            multiplier = 2  # CoT multiplier for thinking models
     elif "Gemini 2.5 Flash Preview" in model_name or "Gemini 2.5 Flash" in model_name:
         base_cost = model_mapping["Gemini 2.5 Flash"]
         if "Thinking" in model_name:
