@@ -41,6 +41,14 @@ The scripts in this repository create scatter plots that help identify which LLM
 
 ![LiveBench Pareto Frontier](pareto-livebench.png)
 
+### SimpleBench
+
+[SimpleBench](https://simple-bench.com/)
+
+#### pareto-simplebench.py
+
+![SimpleBench Pareto Frontier](pareto-simplebench.png)
+
 
 ## Related Blog Posts
 
