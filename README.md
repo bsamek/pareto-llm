@@ -57,6 +57,14 @@ For leaderboards that don't provide cost data, pricing is sourced from [llm-pric
 
 ![SimpleBench Pareto Frontier](pareto-simplebench.png)
 
+### Artificial Analysis
+
+[Artificial Analysis](https://artificialanalysis.ai/)
+
+#### pareto-aa.py
+
+![Artificial Analysis Pareto Frontier](pareto-aa.png)
+
 
 ## Related Blog Posts
 
