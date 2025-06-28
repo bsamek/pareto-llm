@@ -1,10 +1,10 @@
 import pandas as pd
 import plotly.graph_objects as go
+from pricing import load_pricing_data, get_model_cost
 
 # Create the dataset combining LiveBench Coding scores with LLM pricing data
 # LiveBench Coding Average scores from https://livebench.ai/ (2025-05-30)
-# Pricing data from https://www.llm-prices.com/
-# Using average of input+output costs for simplicity
+# Pricing data loaded from llm-prices.json
 #
 # COST MULTIPLIERS APPLIED:
 # 1. Thinking token cost adjustments (simplified to consistent 2x):
@@ -15,61 +15,55 @@ import plotly.graph_objects as go
 #    - "High" models: 2x cost vs "Medium" models
 #    - Applied to: o3 High vs o3 Medium, o4-Mini High vs o4-Mini Medium
 
+# Load pricing data from JSON file
+pricing_data = load_pricing_data()
+
+# Model list and accuracy scores
+models = [
+    "o3 High",
+    "o3 Medium",
+    "o4-Mini High",
+    "o4-Mini Medium",
+    "Claude 4 Opus Thinking",
+    "Claude 4 Opus",
+    "Claude 4 Sonnet Thinking",
+    "Claude 4 Sonnet",
+    "Gemini 2.5 Pro Preview (2025-06-05 Max Thinking)",
+    "Gemini 2.5 Pro Preview (2025-06-05)",
+    "Gemini 2.5 Flash Preview (2025-05-20)",
+    "GPT-4.1",
+    "ChatGPT-4o",
+    "GPT-4.1 Mini",
+    "GPT-4o",
+    "GPT-4.1 Nano",
+]
+
+accuracy_scores = [
+    76.71,  # o3 High
+    77.86,  # o3 Medium
+    79.98,  # o4-Mini High
+    74.22,  # o4-Mini Medium
+    73.25,  # Claude 4 Opus Thinking
+    73.58,  # Claude 4 Opus
+    73.58,  # Claude 4 Sonnet Thinking
+    78.25,  # Claude 4 Sonnet
+    73.90,  # Gemini 2.5 Pro Preview Max Thinking
+    70.70,  # Gemini 2.5 Pro Preview
+    63.53,  # Gemini 2.5 Flash Preview
+    73.19,  # GPT-4.1
+    77.48,  # ChatGPT-4o
+    72.11,  # GPT-4.1 Mini
+    69.29,  # GPT-4o
+    63.92,  # GPT-4.1 Nano
+]
+
+# Calculate costs using the pricing module
+costs = [get_model_cost(model, pricing_data) for model in models]
+
 data = {
-    "model": [
-        "o3 High",
-        "o3 Medium",
-        "o4-Mini High",
-        "o4-Mini Medium",
-        "Claude 4 Opus Thinking",
-        "Claude 4 Opus",
-        "Claude 4 Sonnet Thinking",
-        "Claude 4 Sonnet",
-        "Gemini 2.5 Pro Preview (2025-06-05 Max Thinking)",
-        "Gemini 2.5 Pro Preview (2025-06-05)",
-        "Gemini 2.5 Flash Preview (2025-05-20)",
-        "GPT-4.1",
-        "ChatGPT-4o",
-        "GPT-4.1 Mini",
-        "GPT-4o",
-        "GPT-4.1 Nano",
-    ],
-    "accuracy": [
-        76.71,  # o3 High
-        77.86,  # o3 Medium
-        79.98,  # o4-Mini High
-        74.22,  # o4-Mini Medium
-        73.25,  # Claude 4 Opus Thinking
-        73.58,  # Claude 4 Opus
-        73.58,  # Claude 4 Sonnet Thinking
-        78.25,  # Claude 4 Sonnet
-        73.90,  # Gemini 2.5 Pro Preview Max Thinking
-        70.70,  # Gemini 2.5 Pro Preview
-        63.53,  # Gemini 2.5 Flash Preview
-        73.19,  # GPT-4.1
-        77.48,  # ChatGPT-4o
-        72.11,  # GPT-4.1 Mini
-        69.29,  # GPT-4o
-        63.92,  # GPT-4.1 Nano
-    ],
-    "cost": [
-        10.0,  # o3 High: (2+8)/2 * 2 (high multiplier vs medium)
-        5.0,  # o3 Medium: (2+8)/2
-        5.5,  # o4-Mini High: (1.1+4.4)/2 * 2 (high multiplier vs medium)
-        2.75,  # o4-Mini Medium: (1.1+4.4)/2
-        90.0,  # Claude 4 Opus Thinking: (15+75)/2 * 2 (thinking multiplier)
-        45.0,  # Claude 4 Opus: (15+75)/2
-        18.0,  # Claude 4 Sonnet Thinking: (3+15)/2 * 2 (thinking multiplier)
-        9.0,  # Claude 4 Sonnet: (3+15)/2
-        12.5,  # Gemini 2.5 Pro Preview Max Thinking: (1.25+10)/2 * 2 (thinking multiplier)
-        6.25,  # Gemini 2.5 Pro Preview: (1.25+10)/2
-        2.8,  # Gemini 2.5 Flash Preview: (0.3+2.5)/2 * 2 (thinking multiplier)
-        5.0,  # GPT-4.1: (2+8)/2
-        10.0,  # ChatGPT-4o Latest: (5+15)/2
-        1.0,  # GPT-4.1 Mini: (0.4+1.6)/2
-        6.25,  # GPT-4o: (2.5+10)/2
-        0.25,  # GPT-4.1 Nano: (0.1+0.4)/2
-    ],
+    "model": models,
+    "accuracy": accuracy_scores,
+    "cost": costs,
 }
 
 df = pd.DataFrame(data)

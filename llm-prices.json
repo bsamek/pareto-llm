@@ -1,0 +1,212 @@
+{
+  "last_updated": "2025-06-28",
+  "source": "https://www.llm-prices.com/",
+  "pricing_unit": "per 1 million tokens",
+  "currency": "USD",
+  "models": [
+    {
+      "provider": "Google",
+      "models": [
+        {
+          "name": "Gemini 2.5 Pro",
+          "context_limit": "≤200k",
+          "input_price": 1.25,
+          "output_price": 10.00
+        },
+        {
+          "name": "Gemini 2.5 Pro",
+          "context_limit": ">200k",
+          "input_price": 2.50,
+          "output_price": 15.00
+        },
+        {
+          "name": "Gemini 2.5 Flash",
+          "input_price": 0.30,
+          "output_price": 2.50
+        },
+        {
+          "name": "Gemini 1.5 Pro",
+          "context_limit": "≤128k",
+          "input_price": 1.25,
+          "output_price": 5.00
+        },
+        {
+          "name": "Gemini 1.5 Pro",
+          "context_limit": ">128k",
+          "input_price": 2.50,
+          "output_price": 10.00
+        },
+        {
+          "name": "Gemini 1.5 Flash",
+          "input_price": 0.075,
+          "output_price": 0.30
+        },
+        {
+          "name": "Gemini 1.0 Pro",
+          "input_price": 0.50,
+          "output_price": 1.50
+        }
+      ]
+    },
+    {
+      "provider": "Anthropic",
+      "models": [
+        {
+          "name": "Claude 4 Opus",
+          "input_price": 15.00,
+          "output_price": 75.00
+        },
+        {
+          "name": "Claude 4 Sonnet",
+          "input_price": 3.00,
+          "output_price": 15.00
+        },
+        {
+          "name": "Claude 3.5 Sonnet",
+          "input_price": 3.00,
+          "output_price": 15.00
+        },
+        {
+          "name": "Claude 3.5 Haiku",
+          "input_price": 0.80,
+          "output_price": 4.00
+        },
+        {
+          "name": "Claude 3 Opus",
+          "input_price": 15.00,
+          "output_price": 75.00
+        },
+        {
+          "name": "Claude 3 Sonnet",
+          "input_price": 3.00,
+          "output_price": 15.00
+        },
+        {
+          "name": "Claude 3 Haiku",
+          "input_price": 0.25,
+          "output_price": 1.25
+        }
+      ]
+    },
+    {
+      "provider": "OpenAI",
+      "models": [
+        {
+          "name": "GPT-4o",
+          "input_price": 2.50,
+          "output_price": 10.00
+        },
+        {
+          "name": "GPT-4o-mini",
+          "input_price": 0.150,
+          "output_price": 0.600
+        },
+        {
+          "name": "GPT-4 Turbo",
+          "input_price": 10.00,
+          "output_price": 30.00
+        },
+        {
+          "name": "GPT-4",
+          "input_price": 30.00,
+          "output_price": 60.00
+        },
+        {
+          "name": "GPT-3.5 Turbo",
+          "input_price": 0.50,
+          "output_price": 1.50
+        }
+      ]
+    },
+    {
+      "provider": "xAI",
+      "models": [
+        {
+          "name": "Grok Beta",
+          "input_price": 5.00,
+          "output_price": 15.00
+        }
+      ]
+    },
+    {
+      "provider": "Cohere",
+      "models": [
+        {
+          "name": "Command R+",
+          "input_price": 3.00,
+          "output_price": 15.00
+        },
+        {
+          "name": "Command R",
+          "input_price": 0.50,
+          "output_price": 1.50
+        }
+      ]
+    },
+    {
+      "provider": "Mistral AI",
+      "models": [
+        {
+          "name": "Mistral Large",
+          "input_price": 2.00,
+          "output_price": 6.00
+        },
+        {
+          "name": "Mistral Small",
+          "input_price": 0.20,
+          "output_price": 0.60
+        },
+        {
+          "name": "Mistral Nemo",
+          "input_price": 0.15,
+          "output_price": 0.15
+        }
+      ]
+    },
+    {
+      "provider": "Meta",
+      "models": [
+        {
+          "name": "Llama 3.1 405B",
+          "input_price": 2.70,
+          "output_price": 8.00
+        },
+        {
+          "name": "Llama 3.1 70B",
+          "input_price": 0.35,
+          "output_price": 0.40
+        },
+        {
+          "name": "Llama 3.1 8B",
+          "input_price": 0.055,
+          "output_price": 0.055
+        }
+      ]
+    },
+    {
+      "provider": "Perplexity",
+      "models": [
+        {
+          "name": "Llama 3.1 Sonar 405B Online",
+          "input_price": 5.00,
+          "output_price": 5.00
+        },
+        {
+          "name": "Llama 3.1 Sonar 70B Online",
+          "input_price": 1.00,
+          "output_price": 1.00
+        },
+        {
+          "name": "Llama 3.1 Sonar 8B Online",
+          "input_price": 0.20,
+          "output_price": 0.20
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "disclaimer": "Prices may change frequently. Check provider websites for current pricing.",
+    "context_limits": "Some models have different pricing based on context window usage",
+    "additional_costs": "Some providers may charge additional fees for API usage, storage, or other services"
+  }
+}

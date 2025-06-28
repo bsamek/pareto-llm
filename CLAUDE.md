@@ -1,0 +1,2 @@
+- Commit and push after every change.
+- Use `uv run python <script>` to run the scripts.
