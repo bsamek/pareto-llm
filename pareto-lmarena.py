@@ -27,11 +27,6 @@ model_data = [
     # Anthropic models
     ("claude-opus-4-20250514", "Claude 4 Opus", 1418),
     ("claude-sonnet-4-20250514", "Claude 4 Sonnet", 1393),
-    (
-        "claude-3-7-sonnet-20250219-thinking-32k",
-        "Claude 4 Sonnet Thinking",
-        1387,
-    ),  # CoT model
     # Google models
     ("gemini-2.5-pro", "Gemini 2.5 Pro", 1467),
     ("gemini-2.5-flash", "Gemini 2.5 Flash", 1418),
