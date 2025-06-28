@@ -59,7 +59,7 @@ For leaderboards that don't provide cost data, pricing is sourced from [llm-pric
 
 ### Artificial Analysis
 
-[Artificial Analysis](https://artificialanalysis.ai/)
+[Artificial Analysis](https://artificialanalysis.ai/leaderboards/models)
 
 #### pareto-aa.py
 
