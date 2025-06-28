@@ -6,16 +6,6 @@ This repository contains code for analyzing and visualizing the Pareto frontier 
 
 The scripts in this repository create scatter plots that help identify which LLMs offer the best value proposition by plotting accuracy against cost. The **Pareto frontier** represents the set of models that are not dominated by any other model - meaning no other model offers both lower cost AND higher accuracy.
 
-## Why does this matter?
-
-When choosing an LLM for a project, you typically face a trade-off between:
-- **Accuracy**: How well the model performs on your tasks
-- **Cost**: How much you pay per API call or token
-
-Understanding the Pareto frontier helps you:
-1. **Identify efficient models**: Models on the frontier offer the best accuracy for their cost tier
-2. **Avoid dominated models**: Models not on the frontier are strictly worse than alternatives
-3. **Make informed decisions**: Choose the right model based on your budget and accuracy requirements
 
 ## Scripts
 
