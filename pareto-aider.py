@@ -122,7 +122,7 @@ fig.add_trace(
 )
 
 fig.update_layout(
-    title="LLM Pareto Frontier: Cost vs Accuracy",
+    title="LLM Pareto Frontier: Cost vs Accuracy (Aider)",
     xaxis_title="Cost ($)",
     yaxis_title="Accuracy (%)",
     xaxis_type="log",
