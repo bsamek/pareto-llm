@@ -20,14 +20,10 @@ model_data = [
     # OpenAI models
     ("o3-2025-04-16", "o3", 1451),
     ("chatgpt-4o-latest-20250326", "ChatGPT-4o", 1442),
-    ("gpt-4.5-preview-2025-02-27", "GPT-4.1", 1437),  # Using GPT-4.1 as closest match
     ("gpt-4.1-2025-04-14", "GPT-4.1", 1411),
     ("o4-mini-2025-04-16", "o4-mini", 1398),
     ("gpt-4.1-mini-2025-04-14", "GPT-4.1 Mini", 1374),
     ("gpt-4.1-nano-2025-04-14", "GPT-4.1 Nano", 1320),
-    ("gpt-4o-2024-05-13", "GPT-4o", 1344),
-    ("gpt-4o-2024-08-06", "GPT-4o", 1331),
-    ("gpt-4o-mini-2024-07-18", "GPT-4o", 1314),  # Using GPT-4o pricing for mini variant
     # Anthropic models
     ("claude-opus-4-20250514", "Claude 4 Opus", 1418),
     ("claude-sonnet-4-20250514", "Claude 4 Sonnet", 1393),
