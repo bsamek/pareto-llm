@@ -25,7 +25,27 @@
           "output_price": 2.50
         },
         {
-          "name": "Gemini 2.5 Flash Lite",
+          "name": "Gemini 2.5 Flash Preview",
+          "input_price": 0.15,
+          "output_price": 0.60
+        },
+        {
+          "name": "Gemini 2.5 Flash Preview Thinking",
+          "input_price": 0.15,
+          "output_price": 3.50
+        },
+        {
+          "name": "Gemini 2.5 Flash-Lite Preview",
+          "input_price": 0.10,
+          "output_price": 0.40
+        },
+        {
+          "name": "Gemini 2.0 Flash Lite",
+          "input_price": 0.075,
+          "output_price": 0.30
+        },
+        {
+          "name": "Gemini 2.0 Flash",
           "input_price": 0.10,
           "output_price": 0.40
         },
@@ -43,6 +63,25 @@
         },
         {
           "name": "Gemini 1.5 Flash",
+          "context_limit": "≤128k",
+          "input_price": 0.075,
+          "output_price": 0.30
+        },
+        {
+          "name": "Gemini 1.5 Flash",
+          "context_limit": ">128k",
+          "input_price": 0.15,
+          "output_price": 0.60
+        },
+        {
+          "name": "Gemini 1.5 Flash-8B",
+          "context_limit": "≤128k",
+          "input_price": 0.0375,
+          "output_price": 0.15
+        },
+        {
+          "name": "Gemini 1.5 Flash-8B",
+          "context_limit": ">128k",
           "input_price": 0.075,
           "output_price": 0.30
         },
@@ -97,14 +136,74 @@
       "provider": "OpenAI",
       "models": [
         {
+          "name": "o3 Pro",
+          "input_price": 20.00,
+          "output_price": 80.00
+        },
+        {
+          "name": "o3",
+          "input_price": 2.00,
+          "output_price": 8.00
+        },
+        {
+          "name": "o3-mini",
+          "input_price": 1.10,
+          "output_price": 4.40
+        },
+        {
+          "name": "o4-mini",
+          "input_price": 1.10,
+          "output_price": 4.40
+        },
+        {
+          "name": "o1 Pro",
+          "input_price": 150.00,
+          "output_price": 600.00
+        },
+        {
+          "name": "o1 and o1-preview",
+          "input_price": 15.00,
+          "output_price": 60.00
+        },
+        {
+          "name": "o1-mini",
+          "input_price": 1.10,
+          "output_price": 4.40
+        },
+        {
+          "name": "GPT-4.5",
+          "input_price": 75.00,
+          "output_price": 150.00
+        },
+        {
+          "name": "GPT 4.1",
+          "input_price": 2.00,
+          "output_price": 8.00
+        },
+        {
+          "name": "GPT 4.1 Mini",
+          "input_price": 0.40,
+          "output_price": 1.60
+        },
+        {
+          "name": "GPT 4.1 Nano",
+          "input_price": 0.10,
+          "output_price": 0.40
+        },
+        {
+          "name": "ChatGPT 4o Latest",
+          "input_price": 5.00,
+          "output_price": 15.00
+        },
+        {
           "name": "GPT-4o",
           "input_price": 2.50,
           "output_price": 10.00
         },
         {
-          "name": "GPT-4o-mini",
-          "input_price": 0.150,
-          "output_price": 0.600
+          "name": "GPT-4o Mini",
+          "input_price": 0.15,
+          "output_price": 0.60
         },
         {
           "name": "GPT-4 Turbo",
@@ -127,9 +226,59 @@
       "provider": "xAI",
       "models": [
         {
+          "name": "Grok 3 Beta",
+          "input_price": 3.00,
+          "output_price": 15.00
+        },
+        {
+          "name": "Grok 3 Mini Beta",
+          "input_price": 0.30,
+          "output_price": 0.50
+        },
+        {
           "name": "Grok Beta",
           "input_price": 5.00,
           "output_price": 15.00
+        }
+      ]
+    },
+    {
+      "provider": "Amazon",
+      "models": [
+        {
+          "name": "Amazon Nova Premier",
+          "input_price": 2.50,
+          "output_price": 12.50
+        },
+        {
+          "name": "Amazon Nova Pro",
+          "input_price": 0.80,
+          "output_price": 3.20
+        },
+        {
+          "name": "Amazon Nova Lite",
+          "input_price": 0.06,
+          "output_price": 0.24
+        },
+        {
+          "name": "Amazon Nova Micro",
+          "input_price": 0.035,
+          "output_price": 0.14
+        }
+      ]
+    },
+    {
+      "provider": "DeepSeek",
+      "models": [
+        {
+          "name": "DeepSeek Reasoner",
+          "input_price": 0.55,
+          "output_price": 2.19
+        },
+        {
+          "name": "DeepSeek Chat",
+          "input_price": 0.27,
+          "output_price": 1.10
         }
       ]
     },
@@ -152,19 +301,74 @@
       "provider": "Mistral AI",
       "models": [
         {
-          "name": "Mistral Large",
+          "name": "Pixtral Large",
           "input_price": 2.00,
           "output_price": 6.00
         },
         {
-          "name": "Mistral Small",
+          "name": "Mistral Large 24.11",
+          "input_price": 2.00,
+          "output_price": 6.00
+        },
+        {
+          "name": "Magistral Medium",
+          "input_price": 2.00,
+          "output_price": 5.00
+        },
+        {
+          "name": "Mixtral 8x22B",
+          "input_price": 2.00,
+          "output_price": 6.00
+        },
+        {
+          "name": "Mistral Medium 3",
+          "input_price": 0.40,
+          "output_price": 2.00
+        },
+        {
+          "name": "Codestral",
+          "input_price": 0.30,
+          "output_price": 0.90
+        },
+        {
+          "name": "Mistral Saba",
           "input_price": 0.20,
           "output_price": 0.60
         },
         {
-          "name": "Mistral Nemo",
+          "name": "Pixtral 12B",
           "input_price": 0.15,
           "output_price": 0.15
+        },
+        {
+          "name": "Mistral NeMo",
+          "input_price": 0.15,
+          "output_price": 0.15
+        },
+        {
+          "name": "Mistral Small 3.1",
+          "input_price": 0.10,
+          "output_price": 0.30
+        },
+        {
+          "name": "Ministral 8B 24.10",
+          "input_price": 0.10,
+          "output_price": 0.10
+        },
+        {
+          "name": "Mixtral 8x7B",
+          "input_price": 0.70,
+          "output_price": 0.70
+        },
+        {
+          "name": "Mistral 7B",
+          "input_price": 0.25,
+          "output_price": 0.25
+        },
+        {
+          "name": "Ministral 3B 24.10",
+          "input_price": 0.04,
+          "output_price": 0.04
         }
       ]
     },

@@ -1,3 +1,4 @@
 - Commit and push after every change.
 - Use `uv run python <script>` to run the scripts.
 - Run black before you commit. Use `uvx black .`.
+- After adding a new leaderboard, link the PNG in the README, following the README format.

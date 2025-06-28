@@ -1,9 +1,10 @@
 import pandas as pd
 import plotly.graph_objects as go
+from pricing import load_pricing_data, get_model_cost
 
 # Create the dataset from Artificial Analysis data
-# Intelligence scores and costs from https://artificialanalysis.ai/
-# Note: Using "Blended USD/1M Tokens" cost and "Intelligence Index" from AA
+# Intelligence scores from https://artificialanalysis.ai/
+# Costs from llm-prices.json with explicit thinking/non-thinking tracking
 #
 # Only including specified models:
 # - o3 (not o3-mini or o3-pro)
@@ -13,37 +14,101 @@ import plotly.graph_objects as go
 # - All Claude 4 models
 # - All Gemini 2.5 models
 
+# Load pricing data from JSON file
+pricing_data = load_pricing_data()
+
+# Model list with explicit thinking/non-thinking tracking
+# Format: (display_name, pricing_key, intelligence_score, is_thinking)
 model_data = [
     # OpenAI models
-    ("o3", 70, 3.50),
-    ("o4-mini (high)", 70, 1.93),
-    ("GPT-4o (ChatGPT)", 40, 7.50),
-    ("GPT-4.1", 53, 3.50),
-    # Claude 4 models
-    ("Claude 4 Opus Thinking", 64, 30.00),
-    ("Claude 4 Sonnet Thinking", 61, 6.00),
-    ("Claude 4 Opus", 58, 30.00),
-    ("Claude 4 Sonnet", 53, 6.00),
-    # Gemini 2.5 models
-    ("Gemini 2.5 Pro", 70, 3.44),
-    ("Gemini 2.5 Pro (Mar '25)", 69, 3.44),
-    ("Gemini 2.5 Pro (May '25)", 68, 3.44),
-    ("Gemini 2.5 Flash (Reasoning)", 65, 0.99),
-    ("Gemini 2.5 Flash (April '25) (Reasoning)", 60, 0.99),
-    ("Gemini 2.5 Flash-Lite (Reasoning)", 55, 0.17),
-    ("Gemini 2.5 Flash", 53, 0.26),
-    ("Gemini 2.5 Flash-Lite", 46, 0.17),
+    ("o3", "o3", 70, True),  # o3 IS thinking
+    ("o4-mini (high)", "o4-mini", 70, True),  # o4-mini IS thinking
+    ("GPT-4o (ChatGPT)", "ChatGPT 4o Latest", 40, False),  # ChatGPT is NOT thinking
+    ("GPT-4.1", "GPT 4.1", 53, False),  # GPT models are NOT thinking
+    # Claude 4 models - NONE are thinking based on AA data
+    (
+        "Claude 4 Opus Thinking",
+        "Claude 4 Opus",
+        64,
+        True,
+    ),  # Claude 4 Opus Thinking IS thinking
+    (
+        "Claude 4 Sonnet Thinking",
+        "Claude 4 Sonnet",
+        61,
+        True,
+    ),  # Claude 4 Sonnet Thinking IS thinking
+    ("Claude 4 Opus", "Claude 4 Opus", 58, False),  # Claude 4 Opus is NOT thinking
+    (
+        "Claude 4 Sonnet",
+        "Claude 4 Sonnet",
+        53,
+        False,
+    ),  # Claude 4 Sonnet is NOT thinking
+    # Gemini 2.5 models - reasoning variants ARE thinking
+    (
+        "Gemini 2.5 Pro",
+        "Gemini 2.5 Pro",
+        70,
+        False,
+    ),  # Base Gemini 2.5 Pro is NOT thinking
+    (
+        "Gemini 2.5 Pro (Mar '25)",
+        "Gemini 2.5 Pro",
+        69,
+        False,
+    ),  # Base variant is NOT thinking
+    (
+        "Gemini 2.5 Pro (May '25)",
+        "Gemini 2.5 Pro",
+        68,
+        False,
+    ),  # Base variant is NOT thinking
+    (
+        "Gemini 2.5 Flash (Reasoning)",
+        "Gemini 2.5 Flash",
+        65,
+        True,
+    ),  # Reasoning IS thinking
+    (
+        "Gemini 2.5 Flash (April '25) (Reasoning)",
+        "Gemini 2.5 Flash",
+        60,
+        True,
+    ),  # Reasoning IS thinking
+    (
+        "Gemini 2.5 Flash-Lite (Reasoning)",
+        "Gemini 2.5 Flash-Lite Preview",
+        55,
+        True,
+    ),  # Reasoning IS thinking
+    ("Gemini 2.5 Flash", "Gemini 2.5 Flash", 53, False),  # Base Flash is NOT thinking
+    (
+        "Gemini 2.5 Flash-Lite",
+        "Gemini 2.5 Flash-Lite Preview",
+        46,
+        False,
+    ),  # Base Flash-Lite is NOT thinking
 ]
 
 # Extract data for plotting
 models = []
 intelligence_scores = []
 costs = []
+is_thinking_flags = []
 
-for model, intelligence, cost in model_data:
-    models.append(model)
+for display_name, pricing_key, intelligence, is_thinking in model_data:
+    models.append(display_name)
     intelligence_scores.append(intelligence)
-    costs.append(cost)
+    is_thinking_flags.append(is_thinking)
+
+    # Calculate cost using the pricing module with explicit thinking multiplier
+    base_cost = get_model_cost(pricing_key, pricing_data)
+    if is_thinking:
+        # Apply 2x multiplier for thinking models
+        costs.append(base_cost * 2)
+    else:
+        costs.append(base_cost)
 
 data = {
     "model": models,
