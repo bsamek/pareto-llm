@@ -1,8 +1,8 @@
 import pandas as pd
 import plotly.graph_objects as go
 
-# Create the dataset combining LiveBench scores with LLM pricing data
-# LiveBench Global Average scores from https://livebench.ai/ (2025-05-30)
+# Create the dataset combining LiveBench Data Analysis scores with LLM pricing data
+# LiveBench Data Analysis Average scores from https://livebench.ai/ (2025-05-30)
 # Pricing data from https://www.llm-prices.com/
 # Using average of input+output costs for simplicity
 #
@@ -14,19 +14,6 @@ import plotly.graph_objects as go
 # 2. High vs Medium model cost adjustments:
 #    - "High" models: 2x cost vs "Medium" models
 #    - Applied to: o3 High vs o3 Medium, o4-Mini High vs o4-Mini Medium
-#
-# 3. Base costs from llm-prices.com (average of input+output per million tokens):
-#    - o3/o3 Medium: (2+8)/2 = $5.0
-#    - o4-mini: (1.1+4.4)/2 = $2.75
-#    - Claude 4 Opus: (15+75)/2 = $45.0
-#    - Claude 4 Sonnet: (3+15)/2 = $9.0
-#    - Gemini 2.5 Pro: (1.25+10)/2 = $6.25
-#    - Gemini 2.5 Flash: (0.3+2.5)/2 = $1.40
-#    - GPT-4.1: (2+8)/2 = $5.0
-#    - GPT-4.1 Mini: (0.4+1.6)/2 = $1.0
-#    - GPT-4o: (2.5+10)/2 = $6.25
-#    - GPT-4.1 Nano: (0.1+0.4)/2 = $0.25
-#    - ChatGPT-4o Latest: (5+15)/2 = $10.0
 
 data = {
     "model": [
@@ -48,22 +35,22 @@ data = {
         "GPT-4.1 Nano",
     ],
     "accuracy": [
-        74.61,
-        71.98,
-        71.52,
-        66.87,
-        72.93,
-        65.93,
-        72.08,
-        63.37,
-        70.95,
-        69.39,
-        64.42,
-        55.90,
-        54.74,
-        51.57,
-        47.43,
-        40.51,
+        67.02,  # o3 High
+        68.19,  # o3 Medium
+        68.33,  # o4-Mini High
+        68.47,  # o4-Mini Medium
+        70.73,  # Claude 4 Opus Thinking
+        66.51,  # Claude 4 Opus
+        69.84,  # Claude 4 Sonnet Thinking
+        64.68,  # Claude 4 Sonnet
+        71.50,  # Gemini 2.5 Pro Preview Max Thinking
+        71.60,  # Gemini 2.5 Pro Preview
+        69.85,  # Gemini 2.5 Flash Preview
+        66.40,  # GPT-4.1
+        66.52,  # ChatGPT-4o
+        61.34,  # GPT-4.1 Mini
+        63.53,  # GPT-4o
+        49.82,  # GPT-4.1 Nano
     ],
     "cost": [
         10.0,  # o3 High: (2+8)/2 * 2 (high multiplier vs medium)
@@ -137,9 +124,9 @@ fig.add_trace(
 )
 
 fig.update_layout(
-    title="LLM Pareto Frontier: Cost vs LiveBench Global Score",
+    title="LLM Pareto Frontier: Cost vs LiveBench Data Analysis Score",
     xaxis_title="Cost ($) - Average of Input+Output per Million Tokens",
-    yaxis_title="LiveBench Global Score (%)",
+    yaxis_title="LiveBench Data Analysis Score (%)",
     xaxis_type="log",
     showlegend=True,
     legend=dict(
