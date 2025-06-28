@@ -1,2 +1,3 @@
 - Commit and push after every change.
 - Use `uv run python <script>` to run the scripts.
+- Run black before you commit. Use `uvx black .`.
