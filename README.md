@@ -75,6 +75,22 @@ For leaderboards that don't provide cost data, pricing is sourced from [llm-pric
 
 ![Scale Humanity's Last Exam Pareto Frontier](pareto-scale-humanitys-last-exam.png)
 
+### Scale Enigma Eval
+
+[Scale Enigma Eval](https://scale.com/leaderboard/enigma_eval)
+
+#### pareto-scale-enigma-eval.py
+
+![Scale Enigma Eval Pareto Frontier](pareto-scale-enigma-eval.png)
+
+### Scale MultiChallenge
+
+[Scale MultiChallenge](https://scale.com/leaderboard/multichallenge)
+
+#### pareto-scale-multichallenge.py
+
+![Scale MultiChallenge Pareto Frontier](pareto-scale-multichallenge.png)
+
 
 ## Related Blog Posts
 
