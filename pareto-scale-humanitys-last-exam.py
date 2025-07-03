@@ -21,7 +21,7 @@ pricing_data = load_pricing_data()
 # Model list and accuracy scores
 models = [
     "o3",
-    "o3-mini",
+    "o3",
     "o4-mini",
     "o4-mini",
     "Gemini 2.5 Pro",
