@@ -20,15 +20,15 @@ pricing_data = load_pricing_data()
 
 # Model list and accuracy scores
 models = [
-    "o3 High",
-    "o3 Medium",
-    "o4-Mini High",
-    "o4-Mini Medium",
-    "Gemini 2.5 Pro Preview (2025-06-05)",
-    "Gemini 2.5 Flash Preview (2025-05-20)",
-    "Claude 4 Opus Thinking",
-    "Claude 4 Sonnet Thinking",
-    "GPT-4.1",
+    "o3",
+    "o3-mini",
+    "o4-mini",
+    "o4-mini",
+    "Gemini 2.5 Pro",
+    "Gemini 2.5 Flash Preview",
+    "Claude 4 Opus",
+    "Claude 4 Sonnet",
+    "GPT 4.1",
 ]
 
 accuracy_scores = [
@@ -44,10 +44,44 @@ accuracy_scores = [
 ]
 
 # Calculate costs using the pricing module
-costs = [get_model_cost(model, pricing_data) for model in models]
+# Apply cost multipliers for thinking models and high/medium variants
+costs = []
+display_names = []
+
+for i, model in enumerate(models):
+    base_cost = get_model_cost(model, pricing_data)
+
+    # Apply cost multipliers based on the original model names
+    if i == 0:  # o3 High
+        cost = base_cost * 2
+        display_name = "o3 High"
+    elif i == 1:  # o3 Medium (o3-mini)
+        cost = base_cost
+        display_name = "o3 Medium"
+    elif i == 2:  # o4-Mini High
+        cost = base_cost * 2
+        display_name = "o4-Mini High"
+    elif i == 3:  # o4-Mini Medium
+        cost = base_cost
+        display_name = "o4-Mini Medium"
+    elif i == 5:  # Gemini Flash (thinking)
+        cost = base_cost * 2
+        display_name = "Gemini 2.5 Flash Preview"
+    elif i == 6:  # Claude Opus Thinking
+        cost = base_cost * 2
+        display_name = "Claude 4 Opus Thinking"
+    elif i == 7:  # Claude Sonnet Thinking
+        cost = base_cost * 2
+        display_name = "Claude 4 Sonnet Thinking"
+    else:
+        cost = base_cost
+        display_name = model
+
+    costs.append(cost)
+    display_names.append(display_name)
 
 data = {
-    "model": models,
+    "model": display_names,
     "accuracy": accuracy_scores,
     "cost": costs,
 }
