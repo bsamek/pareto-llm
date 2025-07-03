@@ -52,17 +52,17 @@ for i, model in enumerate(models):
     base_cost = get_model_cost(model, pricing_data)
 
     # Apply cost multipliers based on the original model names
-    if i == 0:  # o3 High
-        cost = base_cost * 2
+    if i == 0:  # o3 High (thinking model with high variant)
+        cost = base_cost * 2 * 2  # 2x for thinking, 2x for high
         display_name = "o3 High"
-    elif i == 1:  # o3 Medium (o3-mini)
-        cost = base_cost
+    elif i == 1:  # o3 Medium (thinking model)
+        cost = base_cost * 2  # 2x for thinking
         display_name = "o3 Medium"
-    elif i == 2:  # o4-Mini High
-        cost = base_cost * 2
+    elif i == 2:  # o4-Mini High (thinking model with high variant)
+        cost = base_cost * 2 * 2  # 2x for thinking, 2x for high
         display_name = "o4-Mini High"
-    elif i == 3:  # o4-Mini Medium
-        cost = base_cost
+    elif i == 3:  # o4-Mini Medium (thinking model)
+        cost = base_cost * 2  # 2x for thinking
         display_name = "o4-Mini Medium"
     elif i == 5:  # Gemini Flash (thinking)
         cost = base_cost * 2
