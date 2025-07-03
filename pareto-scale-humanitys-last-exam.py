@@ -64,6 +64,9 @@ for i, model in enumerate(models):
     elif i == 3:  # o4-Mini Medium (thinking model)
         cost = base_cost * 2  # 2x for thinking
         display_name = "o4-Mini Medium"
+    elif i == 4:  # Gemini 2.5 Pro (thinking model)
+        cost = base_cost * 2  # 2x for thinking
+        display_name = "Gemini 2.5 Pro"
     elif i == 5:  # Gemini Flash (thinking)
         cost = base_cost * 2
         display_name = "Gemini 2.5 Flash Preview"
