@@ -67,6 +67,14 @@ For leaderboards that don't provide cost data, pricing is sourced from [llm-pric
 
 ![Artificial Analysis Pareto Frontier](pareto-aa.png)
 
+### Scale Humanity's Last Exam
+
+[Scale Humanity's Last Exam](https://scale.com/leaderboard/humanitys_last_exam)
+
+#### pareto-scale-humanitys-last-exam.py
+
+![Scale Humanity's Last Exam Pareto Frontier](pareto-scale-humanitys-last-exam.png)
+
 
 ## Related Blog Posts
 
