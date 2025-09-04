@@ -1,52 +1,108 @@
 import pandas as pd
 import plotly.graph_objects as go
 
-# Create the dataset
+# Dataset from Kagi; filtered to only include rows where provider is
+# exactly "kagi" or "kagi (ult)" (excludes deprecated, openrouter, Mistral, Nebius, etc.).
 data = {
     "model": [
-        "o3 [CoT]",
-        "claude-4-opus [CoT]",
-        "gemini-2-5-pro [CoT]",
-        "claude-4-sonnet [CoT]",
-        "o4-mini [CoT]",
-        "claude-4-opus [no-think]",
-        "chatgpt-4o",
-        "gpt-4-1",
-        "claude-4-sonnet [no-think]",
-        "gpt-4-1-mini",
-        "gemini-2-5-flash [no-think]",
+        "claude-4-opus-thinking",
+        "grok-4",
+        "claude-4-sonnet-thinking",
+        "gpt-5",
+        "o3-pro",
+        "gemini-2-5-pro",
+        "gpt-5-mini",
+        "deepseek-r1",
+        "qwen-3-235b-a22b-thinking",
+        "o3",
+        "o4-mini",
+        "gpt-5-nano",
+        "grok-3",
+        "grok-3-mini",
+        "claude-4-opus",
+        "gpt-oss-120b",
+        "gemini-2-5-flash-thinking",
+        "llama-4-maverick",
+        "claude-4-sonnet",
+        "qwen-3-235b-a22b (no thinking)",
+        "gpt-oss-20b",
+        "deepseek chat v3.1",
+        "glm-4-5",
+        "qwen-3-coder",
+        "mistral-medium",
+        "kimi-k2",
+        "gemini-2-5-flash",
+        "gemini-2-5-flash-lite",
+        "mistral-small",
     ],
-    "accuracy": [
-        78.03,
-        77.46,
-        74.03,
-        68.69,
-        67.79,
-        60.21,
-        54.80,
-        53.76,
-        52.58,
-        48.80,
-        41.88,
+    "%accuracy": [
+        74.3,
+        73.6,
+        73.0,
+        72.7,
+        72.1,
+        70.3,
+        70.3,
+        69.4,
+        69.4,
+        67.6,
+        67.6,
+        62.2,
+        61.3,
+        61.3,
+        59.6,
+        58.6,
+        56.8,
+        55.9,
+        55.9,
+        55.0,
+        53.2,
+        53.2,
+        52.3,
+        49.5,
+        45.9,
+        45.0,
+        44.1,
+        40.5,
+        37.8,
     ],
-    "cost": [
-        2.08,
-        2.84,
-        0.19,
-        0.62,
-        0.32,
-        1.06,
-        0.57,
-        0.18,
-        0.23,
-        0.05,
-        0.02,
+    "Cost($)": [
+        22.4,
+        1.0,
+        5.4,
+        7.1,
+        34.2,
+        1.7,
+        4.9,
+        9.9,
+        0.1,
+        4.8,
+        3.1,
+        0.4,
+        2.6,
+        0.3,
+        8.4,
+        0.4,
+        0.5,
+        0.2,
+        1.8,
+        0.4,
+        0.5,
+        0.4,
+        5.2,
+        0.8,
+        0.3,
+        1.1,
+        0.4,
+        0.1,
+        0.1,
     ],
 }
 
 df = pd.DataFrame(data)
+df.rename(columns={"%accuracy": "accuracy", "Cost($)": "cost"}, inplace=True)
 
-# Filter out models with no cost data or zero cost
+# Filter out models with no cost data or zero/negative cost
 df = df[df["cost"].notna()]
 df = df[df["cost"] > 0].copy()
 
@@ -58,7 +114,7 @@ df_sorted = df_best_at_cost.sort_values(by=["cost", "accuracy"], ascending=[True
 pareto_models = []
 last_best_accuracy = -1
 
-for index, row in df_sorted.iterrows():
+for _, row in df_sorted.iterrows():
     if row["accuracy"] > last_best_accuracy:
         pareto_models.append(row["model"])
         last_best_accuracy = row["accuracy"]
@@ -73,7 +129,7 @@ fig.add_trace(
         y=df["accuracy"],
         mode="markers+text",
         marker=dict(
-            color="blue",  # Use blue for all models for consistency
+            color="blue",
             size=8,
             symbol=["square" if m in pareto_models else "circle" for m in df["model"]],
             line=dict(
